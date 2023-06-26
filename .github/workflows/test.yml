@@ -47,7 +47,7 @@ jobs:
           echo  $MVNFOLDER >> $GITHUB_PATH
       - name: Run repo test
         run: | 
-          mvn test --settings .maven/settings.xml 
+          mvn test #--settings .maven/settings.xml 
       - name: Upload MUnit reports
         uses: actions/upload-artifact@v3
         with:
