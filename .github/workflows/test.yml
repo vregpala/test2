@@ -19,6 +19,7 @@ jobs:
         run: |
           echo ${{ github.event.inputs.environment }}
           echo ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          echo ${{ github.workspace }}
       - name: Checkout this repo
         uses: actions/checkout@v3
       - name: Cache dependencies
@@ -34,3 +35,10 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: 8
+      - name: Set up Maven
+          env :
+            MVNFOLDER : "${{ github.workspace }}/apache-maven-3.8.6/bin" 
+          run : |
+           wget https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.8.6/apache-maven-3.8.6-bin.tar.gz
+           tar -xvf apache-maven-3.8.6-bin.tar.gz
+           echo  $MVNFOLDER >> $GITHUB_PATH
