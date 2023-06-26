@@ -22,7 +22,7 @@ jobs:
           echo ${{ github.workspace }}
           echo $MVNFOLDER
           echo $GITHUB_PATH
-          ls target/site/munit/coverage/
+          ls ~/target/site/munit/coverage/
       - name: Checkout this repo
         uses: actions/checkout@v3
       - name: Cache dependencies
