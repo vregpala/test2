@@ -20,6 +20,9 @@ jobs:
           echo ${{ github.event.inputs.environment }}
           echo ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           echo ${{ github.workspace }}
+          echo $MVNFOLDER
+          echo $GITHUB_PATH
+          ls target/site/munit/coverage/
       - name: Checkout this repo
         uses: actions/checkout@v3
       - name: Cache dependencies
@@ -39,6 +42,14 @@ jobs:
         env:
           MVNFOLDER : "${{ github.workspace }}/apache-maven-3.8.6/bin" 
         run : |
-         wget https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.8.6/apache-maven-3.8.6-bin.tar.gz
-         tar -xvf apache-maven-3.8.6-bin.tar.gz
-         echo  $MVNFOLDER >> $GITHUB_PATH
+          wget https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.8.6/apache-maven-3.8.6-bin.tar.gz
+          tar -xvf apache-maven-3.8.6-bin.tar.gz
+          echo  $MVNFOLDER >> $GITHUB_PATH
+      - name: Run repo test
+        run: | 
+          mvn test --settings .maven/settings.xml 
+      - name: Upload MUnit reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: munit-test-reports
+          path: target/site/munit/coverage/
