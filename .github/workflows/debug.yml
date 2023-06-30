@@ -36,7 +36,7 @@ jobs:
     steps:
     - name: Echo
       run: |
-        echo ${{ secrets.AZURE_CREDENTIALS }} | sed 's/./&‌/g'
+        echo ${{ secrets.AZURE_CREDENTIALS }}
     - name: Login via Az module
       uses: azure/login@v1
       with:
