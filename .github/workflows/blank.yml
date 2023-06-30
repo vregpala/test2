@@ -31,19 +31,18 @@ env :
     
 jobs:     
   deploy:
-    runs-on: [self-hosted, Linux, x64, Azure ]
-    environment : ${{  github.event.inputs.environment}} 
+    runs-on: ubuntu-latest
+    environment : ${{  github.event.inputs.environment }} 
     steps:    
     - name: Login via Az module
       uses: azure/login@v1.1
       with:
-        creds: ${{secrets.AZURE_CREDENTIALS}}
-    - name: Download certificate
-
-      run : |
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+#    - name: Download certificate
+#      run : |
           #az keyvault secret download --file $CERT_FILE_NAME --vault-name $KEY_VAULT_NAME --name $CERT_NAME  --encoding base64
           #CONNECTED-APP-CLIENT-ID= $(az keyvault secret show --name $CONNECTED-APP-CLIENT-ID_KV  --vault-name $KEY_VAULT_NAME --query value -o tsv)
-          az keyvault secret show --name $CONNECTED-APP-CLIENT-ID_KV --vault-name $KEY_VAULT_NAME$
-          // client password , nexsus user and variables 
+#          az keyvault secret show --name $CONNECTED-APP-CLIENT-ID_KV --vault-name $KEY_VAULT_NAME$
+#          // client password , nexsus user and variables 
 
 
