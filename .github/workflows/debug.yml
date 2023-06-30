@@ -32,7 +32,7 @@ env :
 jobs:     
   deploy:
     runs-on: ubuntu-latest
-    environment : ${{  github.event.inputs.environment }} 
+    environment : ${{github.event.inputs.environment}} 
     steps:
 #    - name: Echo
 #      run: |
@@ -40,12 +40,20 @@ jobs:
     - name: Login via Az module
       uses: azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
- 
+        creds: ${{secrets.AZURE_CREDENTIALS}}
+    - name : Download Key Valut Secrets   
+      uses: Azure/get-keyvault-secrets@v1
+      with: 
+         keyvault: $KEY_VAULT_NAME
+         secrets: 'ks-test'
+      id: secretAction
+     - name Echo:
+      run: |
+       echo ${{steps.secretAction.outputs.ks-test}} | sed 's/./&‌/g'
 #    - name: Download certificate
 #      run : |
-          #az keyvault secret download --file $CERT_FILE_NAME --vault-name $KEY_VAULT_NAME --name $CERT_NAME  --encoding base64
-          #CONNECTED-APP-CLIENT-ID= $(az keyvault secret show --name $CONNECTED-APP-CLIENT-ID_KV  --vault-name $KEY_VAULT_NAME --query value -o tsv)
+#          #az keyvault secret download --file $CERT_FILE_NAME --vault-name $KEY_VAULT_NAME --name $CERT_NAME  --encoding base64
+#          #CONNECTED-APP-CLIENT-ID= $(az keyvault secret show --name $CONNECTED-APP-CLIENT-ID_KV  --vault-name $KEY_VAULT_NAME --query value -o tsv)
 #          az keyvault secret show --name $CONNECTED-APP-CLIENT-ID_KV --vault-name $KEY_VAULT_NAME$
 #          // client password , nexsus user and variables 
 
