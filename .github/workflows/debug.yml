@@ -47,7 +47,7 @@ jobs:
          keyvault: $KEY_VAULT_NAME
          secrets: 'ks-test'
       id: secretAction
-     - name Echo:
+    - name: Echo
       run: |
        echo ${{steps.secretAction.outputs.ks-test}} | sed 's/./&‌/g'
 #    - name: Download certificate
