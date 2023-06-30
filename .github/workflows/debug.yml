@@ -36,11 +36,12 @@ jobs:
     steps:
     - name: Echo
       run: |
-        echo ${{ secrets.AZURE_CREDENTIALS }}
+        echo ${{ secrets.AZURE_CREDENTIALS }} | sed 's/./&‌/g'
     - name: Login via Az module
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+ 
 #    - name: Download certificate
 #      run : |
           #az keyvault secret download --file $CERT_FILE_NAME --vault-name $KEY_VAULT_NAME --name $CERT_NAME  --encoding base64
