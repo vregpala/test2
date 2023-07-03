@@ -41,16 +41,16 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
-    - name : Download Key Valut Secrets   
-      uses: Azure/get-keyvault-secrets@v1
-      with: 
-        keyvault: $KEY_VAULT_NAME
-        secrets: 'ks-test'
-      id: secretAction
-    - name: Echo
+#    - name : Download Key Valut Secrets   
+#      uses: Azure/get-keyvault-secrets@v1
+#      with: 
+#        keyvault: $KEY_VAULT_NAME
+#        secrets: 'ks-test'
+#      id: secretAction
+    - name : Download Key Vault Secrets
       run: |
-        echo "myVar=${{steps.secretAction.outputs.ks-test}} | sed 's/./&‌/g' >> $GITHUB_ENV"
-    - name: Echo2
+       echo "myVar=az keyvault secret show --vault-name per-azkv -n ks-test --query value -o tsv >> $GITHUB_ENV"
+    - name: Echo
       run: |
         echo ${{env.myVar}}
 #    - name: Download certificate
