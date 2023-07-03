@@ -49,10 +49,11 @@ jobs:
 #      id: secretAction
     - name : Download Key Vault Secrets
       run: |
-       echo "myVar=az keyvault secret show --vault-name per-azkv -n ks-test --query value -o tsv" >> $GITHUB_ENV
+        echo "myVar=az keyvault secret show --vault-name per-azkv -n ks-test --query value -o tsv"
+      id: myVal
     - name: Echo
       run: |
-        echo ${{env.myVar}}
+        echo ${{ steps.myVal.outputs.myVar }}
 #    - name: Download certificate
 #      run : |
 #          #az keyvault secret download --file $CERT_FILE_NAME --vault-name $KEY_VAULT_NAME --name $CERT_NAME  --encoding base64
