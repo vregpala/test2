@@ -49,7 +49,7 @@ jobs:
       id: secretAction
     - name: Echo
       run: |
-        echo myVar=${{steps.secretAction.outputs.ks-test}} | sed 's/./&‌/g' >> $GITHUB_ENV
+        echo "myVar=${{steps.secretAction.outputs.ks-test}} | sed 's/./&‌/g' >> $GITHUB_ENV"
     - name: Echo2
       run: |
         echo ${{env.myVar}}
