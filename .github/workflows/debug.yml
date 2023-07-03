@@ -44,12 +44,15 @@ jobs:
     - name : Download Key Valut Secrets   
       uses: Azure/get-keyvault-secrets@v1
       with: 
-         keyvault: $KEY_VAULT_NAME
-         secrets: 'ks-test'
+        keyvault: $KEY_VAULT_NAME
+        secrets: 'ks-test'
       id: secretAction
     - name: Echo
       run: |
-       echo ${{steps.secretAction.outputs.ks-test}} | sed 's/./&‌/g'
+        echo myVar=${{steps.secretAction.outputs.ks-test}} | sed 's/./&‌/g' >> $GITHUB_ENV
+    - name: Echo2
+      run: |
+        echo ${{env.myVar}}
 #    - name: Download certificate
 #      run : |
 #          #az keyvault secret download --file $CERT_FILE_NAME --vault-name $KEY_VAULT_NAME --name $CERT_NAME  --encoding base64
