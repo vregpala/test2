@@ -49,8 +49,7 @@ jobs:
 #      id: secretAction
     - name : Download Key Vault Secrets
       run: |
-        myVar=$(az keyvault secret show --vault-name per-azkv -n ks-test --query value -o tsv)
-        echo "myVar2=$myVar" >> "$GITHUB_OUTPUT"
+        echo "myVar2=$(az keyvault secret show --vault-name per-azkv -n ks-test --query value -o tsv)" >> "$GITHUB_OUTPUT"
       id: myVars
     - name: Echo
       run: |
