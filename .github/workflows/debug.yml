@@ -52,6 +52,7 @@ jobs:
         myVar3: $(az keyvault secret show --vault-name per-azkv -n ks-test --query value -o tsv)
       run: |
         echo "myVar2=$(az keyvault secret show --vault-name per-azkv -n ks-test --query value -o tsv)" >> "$GITHUB_OUTPUT"
+        echo $myVar3
       id: myVars
     - name: Echo
       run: |
