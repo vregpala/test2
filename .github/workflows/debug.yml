@@ -49,11 +49,10 @@ jobs:
 #      id: secretAction
     - name : Download Key Vault Secrets
       run: |
-        echo "myVar=az keyvault secret show --vault-name per-azkv -n ks-test --query value -o tsv"
-      id: myVal
+        echo ::set-env name=TAG_NAME::az keyvault secret show --vault-name per-azkv -n ks-test --query value -o tsv
     - name: Echo
       run: |
-        echo ${{ steps.myVal.outputs.myVar }}
+        echo ${{ env.TAG_NAME }}
 #    - name: Download certificate
 #      run : |
 #          #az keyvault secret download --file $CERT_FILE_NAME --vault-name $KEY_VAULT_NAME --name $CERT_NAME  --encoding base64
