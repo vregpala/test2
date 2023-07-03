@@ -49,7 +49,7 @@ jobs:
 #      id: secretAction
     - name : Download Key Vault Secrets
       run: |
-        myVar=$(My Test)
+        myVar=$("My Test")
         echo "$myVar" >> "$GITHUB_OUTPUT"
       id: myVars
     - name: Echo
