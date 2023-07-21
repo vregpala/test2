@@ -57,6 +57,7 @@ jobs:
       id: myVars
     - name: Echo
       run: |
+        echo $GITHUB_OUTPUT
         echo "myVar2 "${{steps.myVars.outputs.myVar2}}
         echo "myVar3 "${{steps.myVars.myVar3}}
 #    - name: Download certificate
