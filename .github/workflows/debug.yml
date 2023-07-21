@@ -58,7 +58,7 @@ jobs:
     - name: Echo
       run: |
         echo ${{steps.myVars.outputs}}
-        echo $NEXUS-USER-NAME ${{steps.myVars.outputs.myVar2}}
+        echo "$NEXUS-USER-NAME" ${{steps.myVars.outputs.nexus-user-name}}
         echo "myVar3 "${{steps.myVars.myVar3}}
 #    - name: Download certificate
 #      run : |
