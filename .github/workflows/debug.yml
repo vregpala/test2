@@ -20,7 +20,7 @@ env :
    PROXY_HOST : "proxy-host"
    PROXY_PORT : "proxy-port"
    KEY_VAULT_NAME: "per-azkv"
-   NEXUS-USER-NAME: "nexus-user-name"
+   NEXUS_USER_NAME: "nexus-user-name"
    NEXUS-USER-PASSWORD : "nexus-user-password"
    CONNECTED-APP-CLIENT-ID_KV : "connected-app-client-id-kv"
    CONNECTED-APP-SECRET-ID_KV : "connected-app-secret-id-kv"
@@ -52,13 +52,13 @@ jobs:
         myVar3: $(az keyvault secret show --vault-name per-azkv -n ks-test --query value -o tsv)
       run: |
         echo ${{steps.myVars.outputs}}
-        echo $NEXUS-USER-NAME"=$(az keyvault secret show --vault-name per-azkv -n ks-test --query value -o tsv)" >> "$GITHUB_OUTPUT"
+        echo "$NEXUS_USER_NAME=$(az keyvault secret show --vault-name per-azkv -n ks-test --query value -o tsv)" >> "$GITHUB_OUTPUT"
         echo $myVar3
       id: myVars
     - name: Echo
       run: |
         echo ${{steps.myVars.outputs}}
-        echo "$NEXUS-USER-NAME" ${{steps.myVars.outputs.nexus-user-name}}
+        echo $NEXUS_USER_NAME ${{steps.myVars.outputs.nexus-user-name}}
         echo "myVar3 "${{steps.myVars.myVar3}}
 #    - name: Download certificate
 #      run : |
