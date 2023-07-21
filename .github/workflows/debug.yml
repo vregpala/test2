@@ -51,13 +51,13 @@ jobs:
       env:
         myVar3: $(az keyvault secret show --vault-name per-azkv -n ks-test --query value -o tsv)
       run: |
-        echo $GITHUB_OUTPUT
+        echo ${{steps.myVars.outputs}}
         echo "myVar2=$(az keyvault secret show --vault-name per-azkv -n ks-test --query value -o tsv)" >> "$GITHUB_OUTPUT"
         echo $myVar3
       id: myVars
     - name: Echo
       run: |
-        echo $GITHUB_OUTPUT
+        echo ${{steps.myVars.outputs}}
         echo "myVar2 "${{steps.myVars.outputs.myVar2}}
         echo "myVar3 "${{steps.myVars.myVar3}}
 #    - name: Download certificate
