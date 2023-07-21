@@ -56,8 +56,8 @@ jobs:
       id: myVars
     - name: Echo
       run: |
-        echo ${{steps.myVars.outputs.myVar2}}
-        echo ${{steps.myVars.myVar3}}
+        echo "myVar2 "${{steps.myVars.outputs.myVar2}}
+        echo "myVar3 "${{steps.myVars.myVar3}}
 #    - name: Download certificate
 #      run : |
 #          #az keyvault secret download --file $CERT_FILE_NAME --vault-name $KEY_VAULT_NAME --name $CERT_NAME  --encoding base64
