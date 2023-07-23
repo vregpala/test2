@@ -48,18 +48,15 @@ jobs:
 #        secrets: 'ks-test'
 #      id: secretAction
     - name : Download Key Vault Secrets
-      env:
-        myVar3: $(az keyvault secret show --vault-name per-azkv -n ks-test --query value -o tsv)
       run: |
-        echo ${{steps.myVars.outputs}}
         NEXUS_USER_NAME_VALUE=$(az keyvault secret show --vault-name per-azkv -n ks-test --query value -o tsv)
         echo "$NEXUS_USER_NAME=$NEXUS_USER_NAME_VALUE" >> $GITHUB_OUTPUT
-        echo $myVar3
+        echo "$NEXUS_USER_PASSWORD=$(az keyvault secret show --vault-name per-azkv -n ks-test --query value -o tsv)" >> $GITHUB_OUTPUT
       id: myVars
     - name: Echo
       run: |
-        echo ${{steps.myVars.outputs}}
         echo $NEXUS_USER_NAME ${{steps.myVars.outputs.nexus-user-name}}
+        echo $NEXUS_USER_PASSWORD ${{steps.myVars.outputs.nexus-user-password}}
         echo "myVar3 "${{steps.myVars.myVar3}}" myVar3 "${{steps.myVars.outputs.myVar3}}
 #    - name: Download certificate
 #      uses: azure/CL1@V1
