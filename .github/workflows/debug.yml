@@ -52,7 +52,8 @@ jobs:
         myVar3: $(az keyvault secret show --vault-name per-azkv -n ks-test --query value -o tsv)
       run: |
         echo ${{steps.myVars.outputs}}
-        echo "$NEXUS_USER_NAME=$(az keyvault secret show --vault-name per-azkv -n ks-test --query value -o tsv)" >> "$GITHUB_OUTPUT"
+        NEXUS_USER_NAME_VALUE=$(az keyvault secret show --vault-name per-azkv -n ks-test --query value -o tsv)
+        echo "$NEXUS_USER_NAME=$NEXUS_USER_NAME_VALUE" >> $GITHUB_OUTPUT
         echo $myVar3
       id: myVars
     - name: Echo
