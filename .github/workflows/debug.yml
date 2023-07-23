@@ -49,7 +49,7 @@ jobs:
 #      id: secretAction
     - name : Download Key Vault Secrets
       env:
-        myVar3: "$NEXUS_USER_NAME=$(az keyvault secret show --vault-name per-azkv -n ks-test --query value -o tsv)" >> "$GITHUB_OUTPUT"
+        myVar3: $(az keyvault secret show --vault-name per-azkv -n ks-test --query value -o tsv)
       run: |
         echo ${{steps.myVars.outputs}}
         echo "$NEXUS_USER_NAME=$(az keyvault secret show --vault-name per-azkv -n ks-test --query value -o tsv)" >> "$GITHUB_OUTPUT"
