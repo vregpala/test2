@@ -21,7 +21,7 @@ env :
    PROXY_PORT : "proxy-port"
    KEY_VAULT_NAME: "per-azkv"
    NEXUS_USER_NAME: "nexus-user-name"
-   NEXUS-USER-PASSWORD : "nexus-user-password"
+   NEXUS_USER_PASSWORD : "nexus-user-password"
    CONNECTED-APP-CLIENT-ID_KV : "connected-app-client-id-kv"
    CONNECTED-APP-SECRET-ID_KV : "connected-app-secret-id-kv"
    CERT_NAME : "cert-name"
