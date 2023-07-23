@@ -60,11 +60,11 @@ jobs:
         echo ${{steps.myVars.outputs}}
         echo $NEXUS_USER_NAME ${{steps.myVars.outputs.nexus-user-name}}
         echo "myVar3 "${{steps.myVars.myVar3}}" myVar3 "${{steps.myVars.outputs.myVar3}}
-    - name: Download certificate
-      uses: azure/CL1@V1
-      with:
-        acliversion: 2.30.0
-        inlineScript
+#    - name: Download certificate
+#      uses: azure/CL1@V1
+#      with:
+#        acliversion: 2.30.0
+#        inlineScript
 #      run : |
 #          #az keyvault secret download --file $CERT_FILE_NAME --vault-name $KEY_VAULT_NAME --name $CERT_NAME  --encoding base64
 #          #CONNECTED-APP-CLIENT-ID= $(az keyvault secret show --name $CONNECTED-APP-CLIENT-ID_KV  --vault-name $KEY_VAULT_NAME --query value -o tsv)
